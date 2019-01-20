@@ -1,10 +1,14 @@
 #ifndef Relay_h
 #define Relay_h
 
+#include "Arduino.h"
+
 class Relay {
     public:
 
     Relay(int relayPin, bool isOnByDefault);
+
+    void update();
 
     void ensureOn();
     void ensureOff();
@@ -14,7 +18,7 @@ class Relay {
     private:
 
     int relayPin;
-    int isOn;
+    int isCurrentlyOn;
 };
 
 #endif
