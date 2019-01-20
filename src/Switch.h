@@ -4,14 +4,16 @@
 #include <Bounce2.h>
 
 class Switch {
-    Switch(int switchPin);
+    Switch(int switchPin, int pressedSwitchPinValue = LOW);
+
+    void update();
 
     bool justPressed();
     bool justReleased();
     bool isPressed();
 
     int switchPin;
-    int outputToswitchPin;
+    bool hasPinInputPullUp;
     Bounce debouncer;
 };
 
