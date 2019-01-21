@@ -18,7 +18,7 @@ class Relay {
     private:
 
     int relayPin;
-    int isCurrentlyOn;
+    bool isCurrentlyOn;
 };
 
 #endif

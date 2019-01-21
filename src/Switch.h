@@ -4,6 +4,8 @@
 #include <Bounce2.h>
 
 class Switch {
+    public:
+
     Switch(int switchPin, int pressedSwitchPinValue = LOW);
 
     void update();
@@ -12,6 +14,8 @@ class Switch {
     bool justReleased();
     bool isPressed();
 
+    private:
+    
     int switchPin;
     bool hasPinInputPullUp;
     Bounce debouncer;

@@ -1,13 +1,16 @@
 #include <Arduino.h>
 #include "config.h"
- 
-const relay1 = Relay(RELAY1_PIN, false);
-const relay2 = Relay(RELAY2_PIN, false);
-const relay3 = Relay(RELAY3_PIN, false);
 
-const switchRelay1 = Switch(SWITCH_RELAY1_PIN, LOW);
-const switchRelay2 = Switch(SWITCH_RELAY2_PIN, LOW);
-const switchRelay3 = Switch(SWITCH_RELAY3_PIN, LOW);
+#include "Relay.h"
+#include "Switch.h"
+ 
+Relay relay1 = Relay(RELAY1_PIN, false);
+Relay relay2 = Relay(RELAY2_PIN, false);
+Relay relay3 = Relay(RELAY3_PIN, false);
+
+Switch switchRelay1 = Switch(SWITCH_RELAY1_PIN, LOW);
+Switch switchRelay2 = Switch(SWITCH_RELAY2_PIN, LOW);
+Switch switchRelay3 = Switch(SWITCH_RELAY3_PIN, LOW);
 
 void setup() {
   pinMode(RELAY1_PIN, OUTPUT);
@@ -19,6 +22,17 @@ void setup() {
   pinMode(SWITCH_RELAY3_PIN, INPUT_PULLUP);
 }
 
-void loop() {
+void linkSwitchWithRelay(Switch &swtch, Relay &relay) {
+  if(swtch.justPressed()) {
+    relay.toggle();    
+  }
 
+  relay.update();
+  swtch.update();
+}
+
+void loop() {
+  linkSwitchWithRelay(switchRelay1, relay1);
+  linkSwitchWithRelay(switchRelay2, relay2);
+  linkSwitchWithRelay(switchRelay3, relay3);
 }
