@@ -24,4 +24,4 @@ switch:
 
 Result:
 
-![Home-assistant user interface.](docs/images/haui.png?raw=true "Home-assistant user interface")
+![Home-assistant user interface.](docs/images/haui.PNG?raw=true "Home-assistant user interface")
