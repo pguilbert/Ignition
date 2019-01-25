@@ -6,6 +6,8 @@
 
 #include "MqttHandler.h"
 
+#define MQTT_CONNECTED_CALLBACK_SIGNATURE std::function<void(PubSubClient&)> connectedCallback
+
 class MqttClient {
     public:
 
@@ -13,7 +15,9 @@ class MqttClient {
 
     void setup();
     void update();
-    void onConnected(PubSubClient client);
+
+    void setMqttMessageCallback(MQTT_CALLBACK_SIGNATURE);
+    void setMqttConnectedCallback(MQTT_CONNECTED_CALLBACK_SIGNATURE);
 
     private:
     bool reconnect();
@@ -22,6 +26,7 @@ class MqttClient {
     PubSubClient client;
     const char* server;
     const int port;
+    MQTT_CONNECTED_CALLBACK_SIGNATURE;
     long lastReconnectAttempt = 0;
 };
 

@@ -9,8 +9,12 @@ MqttClient::MqttClient(WiFiClient wifiClient, const char* server, int port) :
     port(port) {
 }
 
-void MqttClient::mqttCallback(char* topic, byte* payload, unsigned int length) {
+void MqttClient::setMqttMessageCallback(MQTT_CALLBACK_SIGNATURE) {
+    client.setCallback(callback);
+}
 
+void MqttClient::setMqttConnectedCallback(MQTT_CONNECTED_CALLBACK_SIGNATURE) {
+    this->connectedCallback = connectedCallback;
 }
 
 void MqttClient::setup() {
@@ -34,9 +38,7 @@ void MqttClient::update() {
 
 bool MqttClient::reconnect() {
     if (client.connect("esp8266Client")) {
-        //exec list of wrapper here...
-        client.publish("outTopic","hello world");
-        client.subscribe("inTopic");
+        this->connectedCallback(client);
     }
     return client.connected();
 }

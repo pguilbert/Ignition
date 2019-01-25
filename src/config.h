@@ -8,7 +8,11 @@
  * */
 #include "secret.h"
 
-#define THING_UID ESP8266-PG-6fb4d7b6
+#define THING_UID "ESP8266-PG-6fb4d7b6"
+#define RELAY1_UID  THING_UID "-RELAY1"
+#define RELAY2_UID  THING_UID "-RELAY2"
+#define RELAY3_UID  THING_UID "-RELAY3"
+
 const char* mqtt_server = "192.168.1.57";
 
 #define RELAY1_PIN 15
