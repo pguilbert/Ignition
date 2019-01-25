@@ -11,9 +11,9 @@
 Relay relay1 = Relay(RELAY1_PIN, false);
 Relay relay2 = Relay(RELAY2_PIN, false);
 Relay relay3 = Relay(RELAY3_PIN, false);
-RelayMqttWrapper relay1MqttWrapper = RelayMqttWrapper(relay1, RELAY1_UID);
-RelayMqttWrapper relay2MqttWrapper = RelayMqttWrapper(relay2, RELAY2_UID);
-RelayMqttWrapper relay3MqttWrapper = RelayMqttWrapper(relay3, RELAY3_UID);
+RelayMqttWrapper relay1MqttWrapper = RelayMqttWrapper(relay1, RELAY1_TOPIC);
+RelayMqttWrapper relay2MqttWrapper = RelayMqttWrapper(relay2, RELAY2_TOPIC);
+RelayMqttWrapper relay3MqttWrapper = RelayMqttWrapper(relay3, RELAY3_TOPIC);
 
 
 Switch switchRelay1 = Switch(SWITCH_RELAY1_PIN, LOW);

@@ -1,8 +1,5 @@
 #include "MqttClient.h"
 
-
-//   client.setServer(mqtt_server, 1883);
-//   client.setCallback(mqttCallback);
 MqttClient::MqttClient(WiFiClient wifiClient, const char* server, int port) : 
     client(wifiClient), 
     server(server), 

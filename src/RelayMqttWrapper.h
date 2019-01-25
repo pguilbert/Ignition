@@ -9,7 +9,7 @@
 class RelayMqttWrapper : public MqttHandler {
     public:
 
-    RelayMqttWrapper(Relay& relay, const char* relayId);
+    RelayMqttWrapper(Relay& relay, const char* relayTopicBase);
 
     void update();
     void onConnected(PubSubClient& client);
@@ -19,7 +19,7 @@ class RelayMqttWrapper : public MqttHandler {
 
     void onRelayStateChanged();
     Relay& relay;
-    const char* relayId;
+    const char* relayTopicBase;
     bool previousRelayState;
 };
 
