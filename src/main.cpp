@@ -1,19 +1,13 @@
 #include <Arduino.h>
 
-#include "config.h"
+#include "config/config.h"
+#include "devices/RelayMqtt.h"
+#include "devices/Switch.h"
+#include "utils/MqttClient.h"
 
-#include "Relay.h"
-#include "Switch.h"
-
-#include "MqttClient.h"
-#include "RelayMqttWrapper.h"
-
-Relay relay1 = Relay(RELAY1_PIN, false);
-Relay relay2 = Relay(RELAY2_PIN, false);
-Relay relay3 = Relay(RELAY3_PIN, false);
-RelayMqttWrapper relay1MqttWrapper = RelayMqttWrapper(relay1, RELAY1_TOPIC);
-RelayMqttWrapper relay2MqttWrapper = RelayMqttWrapper(relay2, RELAY2_TOPIC);
-RelayMqttWrapper relay3MqttWrapper = RelayMqttWrapper(relay3, RELAY3_TOPIC);
+RelayMqtt relay1 = RelayMqtt(RELAY1_PIN, false, RELAY1_TOPIC);
+RelayMqtt relay2 = RelayMqtt(RELAY2_PIN, false, RELAY2_TOPIC);
+RelayMqtt relay3 = RelayMqtt(RELAY3_PIN, false, RELAY3_TOPIC);
 
 Switch switchRelay1 = Switch(SWITCH_RELAY1_PIN, LOW);
 Switch switchRelay2 = Switch(SWITCH_RELAY2_PIN, LOW);
@@ -23,15 +17,15 @@ WiFiClient wifiClient;
 MqttClient mqttClient = MqttClient(wifiClient, mqtt_server, 1883);
 
 void mqttMessageCallback(char *topic, byte *payload, unsigned int length) {
-  relay1MqttWrapper.onMessageReceived(topic, payload, length);
-  relay2MqttWrapper.onMessageReceived(topic, payload, length);
-  relay3MqttWrapper.onMessageReceived(topic, payload, length);
+  relay1.onMessageReceived(topic, payload, length);
+  relay2.onMessageReceived(topic, payload, length);
+  relay3.onMessageReceived(topic, payload, length);
 }
 
 void mqttConnectedCallback(PubSubClient &client) {
-  relay1MqttWrapper.onConnected(client);
-  relay2MqttWrapper.onConnected(client);
-  relay3MqttWrapper.onConnected(client);
+  relay1.onConnected(client);
+  relay2.onConnected(client);
+  relay3.onConnected(client);
 }
 
 void setup() {
@@ -65,7 +59,4 @@ void loop() {
   linkSwitchWithRelay(switchRelay3, relay3);
 
   mqttClient.update();
-  relay1MqttWrapper.update();
-  relay2MqttWrapper.update();
-  relay3MqttWrapper.update();
 }

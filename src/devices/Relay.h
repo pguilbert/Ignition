@@ -14,6 +14,9 @@ class Relay {
   bool toggle();
   bool isOn();
 
+ protected:
+  virtual void onStateChanged() {}
+
  private:
   int relayPin;
   bool isCurrentlyOn;

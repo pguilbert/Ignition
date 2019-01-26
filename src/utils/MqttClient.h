@@ -4,8 +4,6 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-#include "MqttHandler.h"
-
 #define MQTT_CONNECTED_CALLBACK_SIGNATURE \
   std::function<void(PubSubClient&)> connectedCallback
 

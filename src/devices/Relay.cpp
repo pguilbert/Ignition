@@ -5,13 +5,27 @@ Relay::Relay(int relayPin, bool isOnByDefault)
 
 void Relay::update() { digitalWrite(this->relayPin, this->isCurrentlyOn); }
 
-void Relay::ensureOn() { this->isCurrentlyOn = true; }
+void Relay::ensureOn() {
+  bool stateChanged = !this->isCurrentlyOn;
+  this->isCurrentlyOn = true;
 
-void Relay::ensureOff() { this->isCurrentlyOn = false; }
+  if (stateChanged) {
+    this->onStateChanged();
+  }
+}
+
+void Relay::ensureOff() {
+  bool stateChanged = this->isCurrentlyOn;
+  this->isCurrentlyOn = false;
+
+  if (stateChanged) {
+    this->onStateChanged();
+  }
+}
 
 bool Relay::toggle() {
   this->isCurrentlyOn = !this->isCurrentlyOn;
-
+  this->onStateChanged();
   return this->isCurrentlyOn;
 }
 
