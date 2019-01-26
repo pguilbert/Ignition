@@ -9,9 +9,9 @@
 #include "secret.h"
 
 #define THING_UID "PG-6fb4d7b6"
-#define RELAY1_TOPIC  THING_UID "/relay1"
-#define RELAY2_TOPIC  THING_UID "/relay2"
-#define RELAY3_TOPIC  THING_UID "/relay3"
+#define RELAY1_TOPIC THING_UID "/relay1"
+#define RELAY2_TOPIC THING_UID "/relay2"
+#define RELAY3_TOPIC THING_UID "/relay3"
 
 const char* mqtt_server = "192.168.1.57";
 

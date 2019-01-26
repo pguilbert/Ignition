@@ -4,21 +4,19 @@
 #include <Bounce2.h>
 
 class Switch {
-    public:
+ public:
+  Switch(int switchPin, int pressedSwitchPinValue = LOW);
 
-    Switch(int switchPin, int pressedSwitchPinValue = LOW);
+  void update();
 
-    void update();
+  bool justPressed();
+  bool justReleased();
+  bool isPressed();
 
-    bool justPressed();
-    bool justReleased();
-    bool isPressed();
-
-    private:
-    
-    int switchPin;
-    bool hasPinInputPullUp;
-    Bounce debouncer;
+ private:
+  int switchPin;
+  bool hasPinInputPullUp;
+  Bounce debouncer;
 };
 
 #endif

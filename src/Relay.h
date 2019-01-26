@@ -4,21 +4,19 @@
 #include "Arduino.h"
 
 class Relay {
-    public:
+ public:
+  Relay(int relayPin, bool isOnByDefault);
 
-    Relay(int relayPin, bool isOnByDefault);
+  void update();
 
-    void update();
+  void ensureOn();
+  void ensureOff();
+  bool toggle();
+  bool isOn();
 
-    void ensureOn();
-    void ensureOff();
-    bool toggle();
-    bool isOn();
-
-    private:
-
-    int relayPin;
-    bool isCurrentlyOn;
+ private:
+  int relayPin;
+  bool isCurrentlyOn;
 };
 
 #endif

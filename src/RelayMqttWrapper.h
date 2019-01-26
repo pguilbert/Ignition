@@ -7,20 +7,18 @@
 #include "Relay.h"
 
 class RelayMqttWrapper : public MqttHandler {
-    public:
+ public:
+  RelayMqttWrapper(Relay& relay, const char* relayTopicBase);
 
-    RelayMqttWrapper(Relay& relay, const char* relayTopicBase);
+  void update();
+  void onConnected(PubSubClient& client);
+  void onMessageReceived(char* topic, byte* payload, unsigned int length);
 
-    void update();
-    void onConnected(PubSubClient& client);
-    void onMessageReceived(char* topic, byte* payload, unsigned int length);
-
-    private:
-
-    void onRelayStateChanged();
-    Relay& relay;
-    const char* relayTopicBase;
-    bool previousRelayState;
+ private:
+  void onRelayStateChanged();
+  Relay& relay;
+  const char* relayTopicBase;
+  bool previousRelayState;
 };
 
 #endif
