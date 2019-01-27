@@ -13,7 +13,7 @@ steps:
   displayName: 'Install prerequisites'
 
 - script: |
-    export PLATFORMIO_BUILD_FLAGS='-BUILD_CI'
+    mv ./src/config/secret.default.h ./src/config/secret.h 
     platformio run
   condition: succeededOrFailed()
   displayName: 'Build project'
