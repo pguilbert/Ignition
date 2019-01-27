@@ -1,5 +1,7 @@
 A smart power strip that use an RTC module or MQTT messages to switch power outlets.
 
+[![Build Status](https://dev.azure.com/pguilbert/Ignition/_apis/build/status/Ignition-CI?branchName=master)](https://dev.azure.com/pguilbert/Ignition/_build/latest?definitionId=2?branchName=master)
+
 ![Image of the first prototype: three relays with three switch on a breadboard.](docs/images/proto1.jpg?raw=true "Prototype")
 
 This project can be integrated with home-assistant with the following configuration:
