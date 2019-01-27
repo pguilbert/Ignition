@@ -13,6 +13,7 @@ steps:
   displayName: 'Install prerequisites'
 
 - script: |
+    export PLATFORMIO_BUILD_FLAGS='-BUILD_CI'
     platformio run
   condition: succeededOrFailed()
   displayName: 'Build project'

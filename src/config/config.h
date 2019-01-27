@@ -1,7 +1,11 @@
 #ifndef Config_h
 #define Config_h
 
+#ifdef BUILD_CI
+#include "secret.default.h"
+#else
 #include "secret.h"
+#endif
 
 #define THING_UID "PG-6fb4d7b6"
 #define RELAY1_TOPIC THING_UID "/relay1"
